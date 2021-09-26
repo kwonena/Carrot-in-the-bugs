@@ -37,3 +37,11 @@ button {
     font-weight: 800;   
     margin: auto;
 }
+.fail_pop {
+    position: relative;
+    width: 250px;
+    height: 150px;
+    margin: auto;
+    border: 2px solid seagreen;
+    border-radius: 5px;
+}
