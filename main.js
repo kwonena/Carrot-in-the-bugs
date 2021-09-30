@@ -6,6 +6,7 @@ const bug = document.querySelectorAll(".bug");
 const carrotCounter = document.querySelector(".carrot_counter");
 const imgAll = document.querySelectorAll("img");
 const imgBox = document.querySelector(".img_box");
+const failPop = document.querySelector(".fail_pop");
 
 let time = 0;
 let count = 2; // test 2sec
@@ -13,6 +14,8 @@ let count = 2; // test 2sec
 addEventListener("load", () => {
   // 모든 이미지 랜덤 배치(새로고침하면 계속 바뀜)
   showImage();
+  failPop.style.display = 'none';
+
 });
 
 play.addEventListener("click", () => {
@@ -38,6 +41,7 @@ play.addEventListener("click", () => {
 reply.addEventListener("click", () => {
   // 재시작시 이미지 재배치
   showImage();
+  failPop.style.display = 'none';
   play.disabled = false;
   play.innerHTML = `<i class="fas fa-play"></i>`;
 
@@ -59,7 +63,7 @@ function startTimer() {
       console.log("성공!");
     } // 성공팝업
     else {
-      console.log("실패");
+      failPop.style.display = 'block';
     }
   }
 }
