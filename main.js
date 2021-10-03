@@ -1,5 +1,5 @@
 const play = document.querySelector(".play_btn");
-const reply = document.querySelector(".reply_btn");
+const retry = document.querySelector(".retry_btn");
 const ten = document.querySelector(".ten");
 const carrot = document.querySelectorAll(".carrot");
 const bug = document.querySelectorAll(".bug");
@@ -10,28 +10,29 @@ const failPop = document.querySelector(".fail_pop");
 const popTxt = document.querySelector(".pop_text");
 
 let time = 0;
-let count = 10; // test 2sec
+let count = 10;
 
 addEventListener("load", () => {
-  // 모든 이미지 랜덤 배치(새로고침하면 계속 바뀜)
   randomImage();
   failPop.style.display = "none";
 });
 
+// 시작하기
 play.addEventListener("click", () => {
   clearInterval(time);
   time = setInterval("startTimer()", 1000);
   play.innerHTML = `<i class="fas fa-pause fa-lg"></i>`;
 
-  // 당근 모두 클릭시 성공
-  //pickBug();
-  pickCarrot(); // 함수 동시 실행 안됨
+  pickBug();
+  pickCarrot();
 });
 
-reply.addEventListener("click", () => {
+// 다시하기
+retry.addEventListener("click", () => {
   location.reload();
 });
 
+// 타이머 실행
 function startTimer() {
   count = count - 1;
   ten.innerHTML = count;
@@ -45,17 +46,18 @@ function startTimer() {
   }
 }
 
+// 랜덤 이미지
 function randomImage() {
-  // 이미지를 랜덤한 위치에 표시
   for (let i = 0; i < imgAll.length; i++) {
     imgAll[i].style.top = `${Math.floor(Math.random() * 200 + 1)}px`;
     imgAll[i].style.left = `${Math.floor(Math.random() * 800 + 1)}px`;
   }
 }
 
+// 당근 선택
 function pickCarrot() {
   let num = 10;
-  for (let i = 0; i < imgAll.length; i++) {
+  for (let i = 0; i < carrot.length; i++) {
     carrot[i].addEventListener("click", () => {
       num = num - 1;
       carrotCounter.innerHTML = num;
@@ -70,8 +72,9 @@ function pickCarrot() {
   }
 }
 
+// 벌레 선택
 function pickBug() {
-  for (let i = 0; i < imgAll.length; i++) {
+  for (let i = 0; i < bug.length; i++) {
     bug[i].addEventListener("click", () => {
       failPop.style.display = "block";
       clearInterval(time);
